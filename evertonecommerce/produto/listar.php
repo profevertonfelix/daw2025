@@ -20,6 +20,9 @@ if(isset($_POST["editarErro"]))
 
 foreach($retorno as $linha){
     echo "Nome: ".$linha["nome"];
+    
+    echo "<br />Categoria: ".$linha["categoria"];
+
     echo "<br />Preço: ".$linha["preco"];
    
     $retornoImg =  $objImagemDAO->retornarUm($linha["idproduto"]);

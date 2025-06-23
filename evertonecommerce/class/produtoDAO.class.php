@@ -20,9 +20,11 @@
             $sql->execute();
             return $this->conexao->lastInsertId();
         }
-        public function listar(){
+        public function listar($complemento = ""){
             $sql = $this->conexao->prepare(
-                "SELECT * FROM produto"
+                "SELECT produto.*, categoria.nome as categoria FROM produto
+                INNER JOIN categoria 
+                ON produto.Categoria_idcatgoria = categoria.id ".$complemento
             );
             $sql->execute();
             return $sql->fetchAll();

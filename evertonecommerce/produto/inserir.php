@@ -1,3 +1,10 @@
+<?php
+    include_once "../class/categoria.class.php";
+    include_once "../class/categoriaDAO.class.php";
+    $objCategoria = new categoriaDAO();
+    $categorias = $objCategoria->listar();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +19,14 @@
     <input type="text" name="nome"/> 
     Preco:
     <input type="text" name="preco"/> 
-    idcategoria:
-    <input type="text" name="idcategoria"/>
+    Categoria:
+    <select name="idcategoria">
+    <?php
+        foreach($categorias as $linha){
+            echo "<option value='".$linha["id"]."'>".$linha["nome"]."</option>";
+        }
+    ?>
+    </select>
         <br>
          Imagem:
         <input type="file" name="imagem[]" multiple/>

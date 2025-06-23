@@ -41,6 +41,25 @@
             $sql->execute();
             return $sql->fetch();
         }
+        public function login(usuario $usuario){
+            $sql = $this->conexao->prepare("
+                SELECT * FROM usuario WHERE email = :email
+            ");
+            $sql->bindValue(":email", $usuario->getEmail());
+            $sql->execute();
+            if($sql->rowCount()>0){
+                while($retorno = $sql->fetch()){
+                    if($retorno["senha"] == $usuario->getSenha())
+                    {
+                        return $retorno; //tudo Ok! Faça o login
+                    }
+                }
+                return 1;// senha incorreta
+            }
+            else{
+                return 2; //email n cadastrado
+            }
+        }
         public function editar(usuario $usuario){
             $sql= $this->conexao->prepare("
                 UPDATE usuario SET 
