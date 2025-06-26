@@ -13,7 +13,7 @@ else if($retorno == 1)
     echo "senha incorreta";
 else{
     session_start();
-    $_SESSION["id"] = $retorno["id"];
+    $_SESSION["id"] = $retorno["idusuario"];
     $_SESSION["login"] = true;
     header("location:index.php?loginOk");
 }

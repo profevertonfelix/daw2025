@@ -9,6 +9,7 @@ if(!isset($_SESSION["carrinho"])){
 }
 else{
     ?>
+    <form action="carrinho_ok.php" method="POST">
     <table border>
         <thead>
             <th>Nome</th>
@@ -32,7 +33,7 @@ else{
                                 <?=$retorno["preco"];?>
                             </td>
                             <td>
-                                <input type="number" name="" id="">
+                                <input type="number" name="quantidade<?=$id;?>" id="">
                             </td>
                         </tr>
                     <?php
@@ -40,5 +41,12 @@ else{
             ?>
         </tbody>
     </table>
+    Forma de pagamento:
+    <input type="text" name="pagamento" />
+    <br>
+    Endereço de entrega:
+    <input type="text" name="endereco"/>            
+    <button type="submit">Finalizar compra</button>
+    </form>
     <?php
 }

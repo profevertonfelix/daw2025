@@ -16,28 +16,28 @@ if(isset($_GET["carrinho"])){
 }
 //session_destroy();
 
-    include_once "../class/categoria.class.php";
-    include_once "../class/CategoriaDAO.class.php";
+    //include_once "../class/categoria.class.php";
+    //include_once "../class/CategoriaDAO.class.php";
     include_once "../class/produto.class.php";
     include_once "../class/produtoDAO.class.php";
     include_once "../class/imagem.class.php";
     include_once "../class/imagemDAO.class.php";
 
-    $objCategoriaDAO= new categoriaDAO();
-    $categorias = $objCategoriaDAO->listar();
+    //$objCategoriaDAO= new categoriaDAO();
+   // $categorias = $objCategoriaDAO->listar();
 ?>
 <ul>
     <?php
-    foreach($categorias as $linha){
+   /* foreach($categorias as $linha){
         echo "<li><a href='listar.php?id=".
         $linha["idcategoria"]."'>".$linha["nome"]."</a></li>";
-    }
+    }*/
     ?>
     <li><a href="carrinho.php">Carrinho de Compras</a></li>
 </ul>
 <?php
 $objDAO = new produtoDAO();
-$retorno = $objDAO->listar(" ORDER BY id DESC LIMIT 3");
+$retorno = $objDAO->listar(" ORDER BY idproduto DESC LIMIT 3");
 $objImagemDAO = new imagemDAO();
 foreach($retorno as $linha){
     ?>
@@ -50,7 +50,7 @@ foreach($retorno as $linha){
         if($retornoImg>0)
             echo "<img src='../img/".$retornoImg["nome"]."'/>";
         ?>
-        <a href="?id=<?=$linha['id'];?>&carrinho">
+        <a href="?id=<?=$linha['idproduto'];?>&carrinho">
             Adicionar ao Carrinho
         </a>
     </div>

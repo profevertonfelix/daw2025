@@ -24,14 +24,14 @@
             $sql = $this->conexao->prepare(
                 "SELECT produto.*, categoria.nome as categoria FROM produto
                 INNER JOIN categoria 
-                ON produto.Categoria_idcatgoria = categoria.id ".$complemento
+                ON produto.idcategoria = categoria.idcategoria ".$complemento
             );
             $sql->execute();
             return $sql->fetchAll();
         }
         public function retornarUm($id){
             $sql = $this->conexao->prepare("
-            SELECT * FROM produto WHERE id=:id
+            SELECT * FROM produto WHERE idproduto=:id
             ");
             $sql->bindValue(":id", $id);
             $sql->execute();
