@@ -1,4 +1,21 @@
 <?php
+session_start();
+if(isset($_GET["carrinho"])){
+    if(!isset($_SESSION["carrinho"])){
+        $_SESSION["carrinho"] = [];
+    }
+    if(!in_array($_GET["id"], $_SESSION["carrinho"])){
+        array_push($_SESSION["carrinho"], $_GET["id"]);
+        echo "<h2>Adicionado ao carrinho</h2>";
+    }
+    else{
+        echo "<h2>Produto já adicionado ao carrinho anteriormente</h2>";
+    }
+    print_r($_SESSION["carrinho"]);
+
+}
+//session_destroy();
+
     include_once "../class/categoria.class.php";
     include_once "../class/CategoriaDAO.class.php";
     include_once "../class/produto.class.php";
@@ -16,6 +33,7 @@
         $linha["idcategoria"]."'>".$linha["nome"]."</a></li>";
     }
     ?>
+    <li><a href="carrinho.php">Carrinho de Compras</a></li>
 </ul>
 <?php
 $objDAO = new produtoDAO();
@@ -32,5 +50,8 @@ foreach($retorno as $linha){
         if($retornoImg>0)
             echo "<img src='../img/".$retornoImg["nome"]."'/>";
         ?>
+        <a href="?id=<?=$linha['id'];?>&carrinho">
+            Adicionar ao Carrinho
+        </a>
     </div>
 <?php } ?>

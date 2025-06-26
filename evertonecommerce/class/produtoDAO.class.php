@@ -29,5 +29,13 @@
             $sql->execute();
             return $sql->fetchAll();
         }
+        public function retornarUm($id){
+            $sql = $this->conexao->prepare("
+            SELECT * FROM produto WHERE id=:id
+            ");
+            $sql->bindValue(":id", $id);
+            $sql->execute();
+            return $sql->fetch();
+        }
     }
 ?>
